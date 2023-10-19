@@ -1,0 +1,19 @@
+Team Members:
+
+- Ashok Chand, 2098228
+- Elias
+- Ayman
+
+
+Date: October 12-18, 2023
+
+TASKS:
+-Developed initial ER diagram for bookstore
+-Researched for the different attributes that should be considered for Database. 
+-Prepared a initial Relationship diagram for the various Table and its dependency.
+
+
+Date: October 19, 2023
+
+TASKS:
+-................
