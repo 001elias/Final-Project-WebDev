@@ -14,7 +14,9 @@ TASKS:
 
 
 Date: October 19, 2023
-
 TASKS:
 -Check with Database and looked in internet for handling database with php 
-- .......
+
+Date: October 20, 2023
+TASKS:
+- Looked for data sample the project and manage data as per project table and attributes
