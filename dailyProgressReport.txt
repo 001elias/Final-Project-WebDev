@@ -20,3 +20,8 @@ TASKS:
 Date: October 20, 2023
 TASKS:
 - Looked for data sample the project and manage data as per project table and attributes
+
+Date: October 23,
+-Working on the html and CSS,
+-Working on the login/registration.
+-looking for a good database.
