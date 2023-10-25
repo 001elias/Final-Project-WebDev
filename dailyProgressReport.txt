@@ -25,3 +25,8 @@ Date: October 23,
 -Working on the html and CSS,
 -Working on the login/registration.
 -looking for a good database.
+
+Date: October 24, 2023
+TASKS:
+- Populated the datatable with data.
+-Tested login for users via php. 
