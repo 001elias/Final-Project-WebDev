@@ -30,3 +30,8 @@ Date: October 24, 2023
 TASKS:
 - Populated the datatable with data.
 -Tested login for users via php. 
+
+Date: October 25:
+We finished the login/sign up
+we finsihed the About us page
+
