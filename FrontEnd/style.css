@@ -360,4 +360,8 @@
     font-size: 20px; /* Adjust the font size as needed */
   }
   
-  
+  .btn-danger {
+    color: rgb(255, 255, 255);
+    background-color: white;
+    background: white;
+}
