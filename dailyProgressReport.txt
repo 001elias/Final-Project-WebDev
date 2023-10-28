@@ -35,3 +35,8 @@ Date: October 25:
 We finished the login/sign up
 we finsihed the About us page
 
+Date: October 27, 2023
+TASKS:
+- Working on database and php for desired output in webpage.
+- Cleaning and looking for logic that can be followed for table manipulation for webpage.
+
