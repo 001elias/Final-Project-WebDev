@@ -1,7 +1,31 @@
 <?php
 session_start();
-if (isset($_SESSION["user"])) {
-   header("Location: index.php");
+
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+
+if (isset($_POST["login"])) {
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    
+    require_once "database.php";
+    
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $result = mysqli_query($conn, $sql);
+    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+    if ($user) {
+        if (password_verify($password, $user["password"])) {
+            $_SESSION["user"] = "yes";
+            header("Location: /Final-Project-WebDev/Php/home.php"); //FrontEnd/home.html?loggedin=1"); // Redirect to home.html with the loggedin parameter
+            exit();
+        } else {
+            echo "<div class='alert alert-danger'>Password does not match</div>";
+        }
+    } else {
+        echo "<div class='alert alert-danger'>Email does not match</div>";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -28,7 +52,7 @@ if (isset($_SESSION["user"])) {
       href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
-    <link href="/FrontEnd/style.css" rel="stylesheet">
+    <link href="/Final-Project-WebDev/FrontEnd/style.css" rel="stylesheet">
 
     <style>
         body {
@@ -111,7 +135,7 @@ if (isset($_SESSION["user"])) {
 <body>
     <header class="header">
         <div class="logo">
-            <a href="#"><img src="/FrontEnd/logo1.png" alt="Bookish Logo"></a>
+            <a href="#"><img src="/Final-Project-WebDev/FrontEnd/logo1.png" alt="Bookish Logo"></a>
         </div>
         <div class="header-title">Bookish Bookstore</div>
         <div class="navigation">
@@ -119,12 +143,20 @@ if (isset($_SESSION["user"])) {
             <div class="hamburger"></div>
             <ul class="menu">
                 <!-- Include the full navigation menu from home.html -->
-                <li><a href="home.html">Home</a></li>
-                <li><a href="books.html">Books</a></li>
-                <li><a href="childbooks.html">Child Books</a></li>
-                <li><a href="contactus.html">Contact us</a></li>
-                <li><a href="aboutus.html">About Us</a></li>
-                <li><a href="/Php/registration.php">Register</a></li>
+                <li><a href="/Final-Project-WebDev/Php/home.php">Home</a></li>
+          <li><a href="/Final-Project-WebDev/Php/books.php">Books</a></li>
+          <li><a href="/Final-Project-WebDev/FrontEnd/childbooks.html">Child Books</a></li>
+          <li><a href="/Final-Project-WebDev/FrontEnd/contactus.html">Contact us</a></li>
+          <li><a href="/Final-Project-WebDev/Php/aboutUs.php">About Us</a></li>
+          <?php if ($loggedIn != 1): ?>
+            <li><a href="/Final-Project-WebDev/Php/login.php">Login</a></li>
+            <li><a href="/Final-Project-WebDev/Php/registration.php">Register</a></li>
+          <?php endif; ?>
+            
+          <?php if ($loggedIn == 1): ?>
+            <li><a href="/Final-Project-WebDev/Php/logout.php">Logout</a> </li>
+            <li><a href="/cart"><img src="/Final-Project-WebDev/FrontEnd/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a></li>
+          <?php endif; ?>
                 <!-- End of navigation menu -->
             </ul>
         </div>

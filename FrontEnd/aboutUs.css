@@ -1,0 +1,51 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    padding:0px;
+}
+
+
+
+
+.about-section {
+    background-color: #EAE3C9;
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+}
+
+.team {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.team-member {
+    flex: 1;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #85937E;
+    color: #FFFFFF;
+}
+
+.team-member img {
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+    margin: 0 auto 10px;
+    display: block;
+    border-radius: 50%;
+}
+
+.mission-vision-awards {
+    background-color: #EAE3C9;
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 5px;
+}

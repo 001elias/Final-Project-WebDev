@@ -1,5 +1,13 @@
 <?php
 session_start();
+
+// Destroy the session
 session_destroy();
-header("Location: http://localhost/FrontEnd/home.html");
+
+$_SESSION = array();
+
+// Redirect to the login page
+header("Location: login.php");
+exit;
 ?>
+

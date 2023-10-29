@@ -1,3 +1,8 @@
+<?php
+   include('session.php'); // Include the common header
+   $loggedIn = isset($_SESSION['user']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,49 +27,41 @@
       href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
-    <link href="style.css" rel="stylesheet" />
+    <link href="/Final-Project-WebDev/FrontEnd/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
   </head>
   <body>
     <header class="header">
       <div class="logo">
-        <a href="#"><img src="logo1.png" alt="Bookish Logo"></a>
+        <a href="#"><img src="/Final-Project-WebDev/FrontEnd/logo1.png" alt="Bookish Logo"></a>
       </div>
       <div class="header-title">Bookish Bookstore</div>
       <div class="navigation">
         <input type="checkbox" class="toggle-menu" />
         <div class="hamburger"></div>
         <ul class="menu">
-          <li><a href="/FrontEnd/Home.html">Home</a></li>
-          <li><a href="/Php/books.php">Books</a></li>
-          <li><a href="/FrontEnd/childbooks.html">Child Books</a></li>
-          <li><a href="/FrontEnd/contactus.html">Contact us</a></li>
-          <li><a href="/Php/aboutUs.php">About Us</a></li>
-          <li><a href="/Php/login.php">Login</a></li>
-          <li><a href="/Php/registration.php">Register</a></li>
-          <script>
-            const urlParams = new URLSearchParams(window.location.search);
-            const isLoggedIn = urlParams.get('loggedin');
-
-            if (isLoggedIn) {
-            document.write('<li><a href="http://localhost/Php/logout.php">Logout</a><li>');
-            const loginButton = document.querySelector('a[href*="login.php"]');
-            const registerButton = document.querySelector('a[href*="registration.php"]');
-        
-            if (loginButton) {
-            loginButton.style.display = 'none';
-            }
-
-            if (registerButton) {
-            registerButton.style.display = 'none';
-            }
-    }
-          </script>
+          <li><a href="/Final-Project-WebDev/Php/home.php">Home</a></li>
+          <li><a href="/Final-Project-WebDev/Php/books.php">Books</a></li>
+          <li><a href="/Final-Project-WebDev/FrontEnd/childbooks.html">Child Books</a></li>
+          <li><a href="/Final-Project-WebDev/FrontEnd/contactus.html">Contact us</a></li>
+          <li><a href="/Final-Project-WebDev/Php/aboutUs.php">About Us</a></li>
+          <?php if ($loggedIn != 1): ?>
+            <li><a href="/Final-Project-WebDev/Php/login.php">Login</a></li>
+            <li><a href="/Final-Project-WebDev/Php/registration.php">Register</a></li>
+          <?php endif; ?>
+            
+          <?php if ($loggedIn == 1): ?>
+            <li><a href="/Final-Project-WebDev/Php/logout.php">Logout</a> </li>
+            <li><a href="/cart"><img src="/Final-Project-WebDev/FrontEnd/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a></li>
+          <?php endif; ?>
+          
         </ul>
       </div>
     </header>
+
 
     <section class="best-selling-books">
         <h2 class="carousel-title">Best Selling Books</h2>
@@ -79,15 +76,15 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
               <div class="item active">
-                <img src="book1.jpg">
+                <img src="/Final-Project-WebDev/FrontEnd/book1.jpg">
               </div>
           
               <div class="item">
-                <img src="book1 (2).jpg">
+                <img src="/Final-Project-WebDev/FrontEnd/book1 (2).jpg">
               </div>
           
               <div class="item">
-                <img src="book1 (3).jpg">
+                <img src="/Final-Project-WebDev/FrontEnd/book1 (3).jpg">
               </div>
             </div>
           
@@ -125,7 +122,7 @@
         </div>
       </div>
     </div>
-
+<input type="hidden" id="hiddencontainer" name="hiddencontainer"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script>

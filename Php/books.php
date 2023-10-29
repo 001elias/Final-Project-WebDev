@@ -15,9 +15,6 @@ print_r($rowCat['12']); */
 $sqlCat  = "SELECT * FROM category";
 $queryCat= $db->query($sqlCat);
 $rowCat = $queryCat->fetchall(PDO::FETCH_KEY_PAIR);
-
-
-
 ?>
 
 
