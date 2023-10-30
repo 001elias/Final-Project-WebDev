@@ -44,3 +44,8 @@ Date: October 28, 2023
 - Implemented about us page in the Website
 - Fixed login/register issues
 - Added cart option when logged (no cart page yet)
+
+Date: October 29-30, 2023
+- Adapted login/register functions to main database
+- Organised folder disposition
+- Fixed some references

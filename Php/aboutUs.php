@@ -11,8 +11,8 @@ $loggedIn = isset($_SESSION['user']);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Final-Project-WebDev/FrontEnd/style.css">
-    <link rel="stylesheet" href="/Final-Project-WebDev/FrontEnd/aboutUs.css">
+    <link rel="stylesheet" href="/Final-Project-WebDev/Css/style.css">
+    <link rel="stylesheet" href="/Final-Project-WebDev/Css/aboutUs.css">
 
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
@@ -46,20 +46,21 @@ $loggedIn = isset($_SESSION['user']);
         <input type="checkbox" class="toggle-menu" />
         <div class="hamburger"></div>
         <ul class="menu">
-          <li><a href="/Final-Project-WebDev/Php/home.php">Home</a></li>
-          <li><a href="/Final-Project-WebDev/Php/books.php">Books</a></li>
-          <li><a href="/Final-Project-WebDev/FrontEnd/childbooks.html">Child Books</a></li>
-          <li><a href="/Final-Project-WebDev/FrontEnd/contactus.html">Contact us</a></li>
-          <li><a href="/Final-Project-WebDev/Php/aboutUs.php">About Us</a></li>
+          <li><a href="home.php">Home</a></li>
+          <li><a href="books.php">Books</a></li>
+          <li><a href="categories.php">Categories</a></li>
+          <li><a href="contactUs.php">Contact us</a></li>
+          <li><a href="aboutUs.php">About Us</a></li>
           <?php if ($loggedIn != 1): ?>
-            <li><a href="/Final-Project-WebDev/Php/login.php">Login</a></li>
-            <li><a href="/Final-Project-WebDev/Php/registration.php">Register</a></li>
+            <li><a href="login.php">Login</a></li>
+            <li><a href="registration.php">Register</a></li>
           <?php endif; ?>
             
           <?php if ($loggedIn == 1): ?>
-            <li><a href="/Final-Project-WebDev/Php/logout.php">Logout</a> </li>
-            <li><a href="/cart"><img src="/Final-Project-WebDev/FrontEnd/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a></li>
+            <li><a href="logout.php">Logout</a> </li>
+            <li><a href="cart.php"><img src="/Final-Project-WebDev/Assets/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a></li>
           <?php endif; ?>
+          
         </ul>
       </div>
     </header>
@@ -71,7 +72,7 @@ $loggedIn = isset($_SESSION['user']);
 
             <div class="team">
                 <div class="team-member">
-                    <img src="/Final-Project-WebDev/FrontEnd/Ayman1.jpg" alt="Ayman Zriek">
+                    <img src="/Final-Project-WebDev/Assets/Ayman1.jpg" alt="Ayman Zriek">
                     <h4>Ayman Zriek</h4>
                     <p>John Doe is an experienced entrepreneur with a passion for innovation. He has successfully launched several startups and is committed to driving the company towards success.</p>
                 </div>

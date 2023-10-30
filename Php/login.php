@@ -1,33 +1,61 @@
 <?php
 session_start();
 
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Pragma: no-cache");
-header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+require 'connectDb.php'; // Include your database connection script
 
-if (isset($_POST["login"])) {
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    
-    require_once "database.php";
-    
-    $sql = "SELECT * FROM users WHERE email = '$email'";
-    $result = mysqli_query($conn, $sql);
-    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+if (isset($_COOKIE['PHPSESSID'])) {
+    // If it exists, set its expiration to the past to delete it
+    setcookie('PHPSESSID', '', time() - 3600, '/');
+}
 
-    if ($user) {
-        if (password_verify($password, $user["password"])) {
-            $_SESSION["user"] = "yes";
-            header("Location: /Final-Project-WebDev/Php/home.php"); //Redirect to home.php 
-            exit();
+if (isset($_SESSION['user'])) {
+    header("location: home.php");
+    die();
+}
+
+function validateIsEmptyData($data, $field) {
+    if (empty($data[$field])) {
+        return true; // Field is empty
+    }
+    return false; // Field is not empty
+}
+
+$errorMessages = "";
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    if (validateIsEmptyData($_POST, 'email')) {
+        $errorMessages .= "Email is required <br>";
+    }
+
+    if (validateIsEmptyData($_POST, 'password')) {
+        $errorMessages .= "Password is required <br>";
+    }
+
+    if ($errorMessages == "") {
+        // Fetch data from the 'customer' table in the 'fsd10_yankee' database
+        $sql = "SELECT * FROM customer WHERE cusEmail = :email"; // Updated field name
+        $query = $db->prepare($sql);
+        $query->execute(["email" => $_POST['email']]); // Updated field name
+        $data = $query->fetch();
+
+        if ($data) {
+            if (password_verify($_POST['password'], $data['cusPassword'])) { // Updated field name
+                // User login is successful
+                $_SESSION['user'] = true;
+                $_SESSION['realName'] = $data['cusFirstName'] . ' ' . $data['cusLastName'];
+
+                header("location: home.php");
+                die();
+            } else {
+                $errorMessages = "Invalid Password"; // Password doesn't match
+            }
         } else {
-            echo "<div class='alert alert-danger'>Password does not match</div>";
+            $errorMessages = "Invalid Email"; // Email not found
         }
-    } else {
-        echo "<div class='alert alert-danger'>Email does not match</div>";
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +80,7 @@ if (isset($_POST["login"])) {
       href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
-    <link href="/Final-Project-WebDev/FrontEnd/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Final-Project-WebDev/Css/style.css">
 
     <style>
         body {
@@ -133,58 +161,34 @@ if (isset($_POST["login"])) {
     <!-- End of styles and fonts -->
 </head>
 <body>
-    <header class="header">
-        <div class="logo">
-            <a href="#"><img src="/Final-Project-WebDev/FrontEnd/logo1.png" alt="Bookish Logo"></a>
-        </div>
-        <div class="header-title">Bookish Bookstore</div>
-        <div class="navigation">
-            <input type="checkbox" class="toggle-menu" />
-            <div class="hamburger"></div>
-            <ul class="menu">
-                <!-- Include the full navigation menu from home.html -->
-                <li><a href="/Final-Project-WebDev/Php/home.php">Home</a></li>
-          <li><a href="/Final-Project-WebDev/Php/books.php">Books</a></li>
-          <li><a href="/Final-Project-WebDev/FrontEnd/childbooks.html">Child Books</a></li>
-          <li><a href="/Final-Project-WebDev/FrontEnd/contactus.html">Contact us</a></li>
-          <li><a href="/Final-Project-WebDev/Php/aboutUs.php">About Us</a></li>
+<header class="header">
+      <div class="logo">
+        <a href="#"><img src="/Final-Project-WebDev/FrontEnd/logo1.png" alt="Bookish Logo"></a>
+      </div>
+      <div class="header-title">Bookish Bookstore</div>
+      <div class="navigation">
+        <input type="checkbox" class="toggle-menu" />
+        <div class="hamburger"></div>
+        <ul class="menu">
+          <li><a href="home.php">Home</a></li>
+          <li><a href="books.php">Books</a></li>
+          <li><a href="categories.php">Categories</a></li>
+          <li><a href="contactUs.php">Contact us</a></li>
+          <li><a href="aboutUs.php">About Us</a></li>
           <?php if ($loggedIn != 1): ?>
-            <li><a href="/Final-Project-WebDev/Php/login.php">Login</a></li>
-            <li><a href="/Final-Project-WebDev/Php/registration.php">Register</a></li>
+            <li><a href="login.php">Login</a></li>
+            <li><a href="registration.php">Register</a></li>
           <?php endif; ?>
             
           <?php if ($loggedIn == 1): ?>
-            <li><a href="/Final-Project-WebDev/Php/logout.php">Logout</a> </li>
-            <li><a href="/cart"><img src="/Final-Project-WebDev/FrontEnd/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a></li>
+            <li><a href="logout.php">Logout</a> </li>
+            <li><a href="cart.php"><img src="/Final-Project-WebDev/Assets/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a></li>
           <?php endif; ?>
-                <!-- End of navigation menu -->
-            </ul>
-        </div>
+          
+        </ul>
+      </div>
     </header>
     <div class="container">
-        <?php
-        if (isset($_POST["login"])) {
-           $email = $_POST["email"];
-           $password = $_POST["password"];
-            require_once "database.php";
-            $sql = "SELECT * FROM users WHERE email = '$email'";
-            $result = mysqli_query($conn, $sql);
-            $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-            if ($user) {
-                if (password_verify($password, $user["password"])) {
-                    session_start();
-                    $_SESSION["user"] = "yes";
-                    header("Location: http://localhost/FrontEnd/home.html?loggedin=1");
-                    die();
-                }else{
-                    echo "<div class='alert alert-danger'>Password does not match</div>";
-                }
-            }else{
-                echo "<div class='alert alert-danger'>Email does not match</div>";
-            }
-        }
-        ?>
-
 <form class="login-form" action="login.php" method="post">
             <div class="form-group">
                 <input type="email" placeholder="Enter Email:" name="email" class="form-control">
@@ -196,6 +200,9 @@ if (isset($_POST["login"])) {
                 <input type="submit" value="Login" name="login" class="btn btn-primary">
             </div>
         </form>
+        <?php if (!empty($errorMessages)) : ?>
+            <div class="alert alert-danger"><?php echo $errorMessages; ?></div>
+        <?php endif; ?>
     </div>
 </body>
 </html>

@@ -27,7 +27,7 @@
       href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
-    <link href="/Final-Project-WebDev/FrontEnd/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/Final-Project-WebDev/Css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -43,19 +43,19 @@
         <input type="checkbox" class="toggle-menu" />
         <div class="hamburger"></div>
         <ul class="menu">
-          <li><a href="/Final-Project-WebDev/Php/home.php">Home</a></li>
-          <li><a href="/Final-Project-WebDev/Php/books.php">Books</a></li>
-          <li><a href="/Final-Project-WebDev/FrontEnd/childbooks.html">Child Books</a></li>
-          <li><a href="/Final-Project-WebDev/FrontEnd/contactus.html">Contact us</a></li>
-          <li><a href="/Final-Project-WebDev/Php/aboutUs.php">About Us</a></li>
+          <li><a href="home.php">Home</a></li>
+          <li><a href="books.php">Books</a></li>
+          <li><a href="categories.php">Categories</a></li>
+          <li><a href="contactUs.php">Contact us</a></li>
+          <li><a href="aboutUs.php">About Us</a></li>
           <?php if ($loggedIn != 1): ?>
-            <li><a href="/Final-Project-WebDev/Php/login.php">Login</a></li>
-            <li><a href="/Final-Project-WebDev/Php/registration.php">Register</a></li>
+            <li><a href="login.php">Login</a></li>
+            <li><a href="registration.php">Register</a></li>
           <?php endif; ?>
             
           <?php if ($loggedIn == 1): ?>
-            <li><a href="/Final-Project-WebDev/Php/logout.php">Logout</a> </li>
-            <li><a href="/cart"><img src="/Final-Project-WebDev/FrontEnd/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a></li>
+            <li><a href="logout.php">Logout</a> </li>
+            <li><a href="cart.php"><img src="/Final-Project-WebDev/Assets/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a></li>
           <?php endif; ?>
           
         </ul>
@@ -76,15 +76,15 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
               <div class="item active">
-                <img src="/Final-Project-WebDev/FrontEnd/book1.jpg">
+                <img src="/Final-Project-WebDev/Assets/book1.jpg">
               </div>
           
               <div class="item">
-                <img src="/Final-Project-WebDev/FrontEnd/book1 (2).jpg">
+                <img src="/Final-Project-WebDev/Assets/book1 (2).jpg">
               </div>
           
               <div class="item">
-                <img src="/Final-Project-WebDev/FrontEnd/book1 (3).jpg">
+                <img src="/Final-Project-WebDev/Assets/book1 (3).jpg">
               </div>
             </div>
           

@@ -31654,7 +31654,6 @@ INSERT INTO `category` (`categoryId`, `categoryName`) VALUES
 
 CREATE TABLE `customer` (
   `customerId` int(11) NOT NULL,
-  `cusUserName` varchar(100) NOT NULL,
   `cusPassword` varchar(100) NOT NULL,
   `cusFirstName` varchar(100) NOT NULL,
   `cusLastName` varchar(100) NOT NULL,
