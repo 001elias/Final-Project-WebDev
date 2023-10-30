@@ -18,7 +18,7 @@ if (isset($_POST["login"])) {
     if ($user) {
         if (password_verify($password, $user["password"])) {
             $_SESSION["user"] = "yes";
-            header("Location: /Final-Project-WebDev/Php/home.php"); //FrontEnd/home.html?loggedin=1"); // Redirect to home.html with the loggedin parameter
+            header("Location: /Final-Project-WebDev/Php/home.php"); //Redirect to home.php 
             exit();
         } else {
             echo "<div class='alert alert-danger'>Password does not match</div>";
