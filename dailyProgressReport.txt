@@ -49,3 +49,8 @@ Date: October 29-30, 2023
 - Adapted login/register functions to main database
 - Organised folder disposition
 - Fixed some references
+
+Date: October 31,2023
+- worked in form for search using category. 
+- Changed the layout for books list presentation.
+-
