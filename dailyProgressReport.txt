@@ -54,3 +54,8 @@ Date: October 31,2023
 - worked in form for search using category. 
 - Changed the layout for books list presentation.
 -
+
+Date: November 1,2023
+- worked in form for search using title and Isbn. 
+- Worked on page for the book database .
+- Working on the page for the adding and updating books data for Admin.
