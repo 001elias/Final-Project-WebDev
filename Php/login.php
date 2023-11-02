@@ -3,11 +3,6 @@ session_start();
 
 require 'connectDb.php'; // Include your database connection script
 
-if (isset($_COOKIE['PHPSESSID'])) {
-    // If it exists, set its expiration to the past to delete it
-    setcookie('PHPSESSID', '', time() - 3600, '/');
-}
-
 if (isset($_SESSION['user'])) {
     header("location: home.php");
     die();
@@ -163,7 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <body>
 <header class="header">
       <div class="logo">
-        <a href="#"><img src="/Final-Project-WebDev/FrontEnd/logo1.png" alt="Bookish Logo"></a>
+        <a href="#"><img src="/Final-Project-WebDev/Assets/logo1.png" alt="Bookish Logo"></a>
       </div>
       <div class="header-title">Bookish Bookstore</div>
       <div class="navigation">

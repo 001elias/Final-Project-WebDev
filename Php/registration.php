@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <body>
 <header class="header">
       <div class="logo">
-        <a href="#"><img src="/Final-Project-WebDev/FrontEnd/logo1.png" alt="Bookish Logo"></a>
+        <a href="#"><img src="/Final-Project-WebDev/Assets/logo1.png" alt="Bookish Logo"></a>
       </div>
       <div class="header-title">Bookish Bookstore</div>
       <div class="navigation">
