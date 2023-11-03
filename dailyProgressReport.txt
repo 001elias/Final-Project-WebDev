@@ -59,8 +59,10 @@ Date: November 1,2023
 - worked in form for search using title and Isbn. 
 - Worked on page for the book database .
 - Working on the page for the adding and updating books data for Admin.
+- Worked on the contact us page.
 
 Date: November 2,2023
 - worked on form for editing the book stocks. 
 - Worked on Bookstore page for adding new books in database .
 - Working on the page for the deleting books data for Admin.
+- Finished the contact us page.
