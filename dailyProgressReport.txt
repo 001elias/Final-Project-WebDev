@@ -66,3 +66,9 @@ Date: November 2,2023
 - Worked on Bookstore page for adding new books in database .
 - Working on the page for the deleting books data for Admin.
 - Finished the contact us page.
+
+Date: November 3,2023
+- worked on the page for the deleting books data for Admin. 
+- Worked on  page for deleting customer database and reseting password for customer .
+- Working on the page for the editing customer details for Admin.
+- 
