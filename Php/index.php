@@ -55,8 +55,6 @@ $loggedIn = isset($_SESSION['user']);
       </ul>
     </div>
   </header>
-
-
   <section class="best-selling-books">
     <h2 class="carousel-title">Featured Books</h2>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
