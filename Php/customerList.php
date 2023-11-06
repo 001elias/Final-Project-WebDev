@@ -196,7 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                   </tr>
 
                 </div>
-              <?php
+                <?php
               } else {
                 $noDataFound = "User Email Id not found";
 
@@ -236,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 </tr>
 
               </div>
-            <?php
+              <?php
 
 
 
