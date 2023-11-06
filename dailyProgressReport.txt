@@ -77,9 +77,15 @@ Date: November 4,2023
 - Worked on Admin role how admin can handle the database book and customer details 
 
 Date: November 5,2023
+<<<<<<< HEAD
 - Finished admin dashboard
 - Finished Book page
 - Implemented contact us page
 - Finished the cart functionality
 - Finished search page
 - Finished categories page
+=======
+- updated the code for some missing logics.
+- organized the code for the databases for frontend.
+- 
+>>>>>>> 72792248c7df0e1c1a929bef38895b1af0e12f85

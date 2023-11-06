@@ -26,6 +26,7 @@ $rowCat = $queryCat->fetchall(PDO::FETCH_KEY_PAIR);
 
 
 
+<<<<<<< HEAD
 if (array_key_exists('id', $_GET)) {
 	// ?item=x is in URL while doing edit 
 	// CHECK that item is in database
@@ -48,6 +49,14 @@ if (array_key_exists('id', $_GET)) {
 	$txtAuthor = $qbook['authorName'];
 	$txtStock = $qbook['stockUnit'];
 	$txtPrice = $qbook['unitPrice'];
+=======
+if (array_key_exists('id',$_GET)){
+  // ?id=x is in URL while doing edit 
+  // CHECK that item is in database
+  $sql  = "SELECT b.*, a.* FROM book b  join book_author ba ON b.bookId=ba.bookId  join author a ON ba.authorId=a.authorId WHERE b.bookId = :value";
+  $query = $db->prepare($sql);
+  $query->execute(['value'=>$_GET['id']]);
+>>>>>>> 72792248c7df0e1c1a929bef38895b1af0e12f85
 
 }
 
@@ -55,9 +64,14 @@ $sqlAuthor = "SELECT * FROM author";
 $queryAuthor = $db->query($sqlAuthor);
 $rowAuthor = $queryAuthor->fetchall();
 $lastid = sizeof($rowAuthor);
-print_r($qAuthorId);
+//print_r($qAuthorId);
 
+<<<<<<< HEAD
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+=======
+print_r($fileImage);
+if ($_SERVER['REQUEST_METHOD'] == "POST"){
+>>>>>>> 72792248c7df0e1c1a929bef38895b1af0e12f85
 	// form was submitted
 
 	// validating the form
@@ -102,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			// file is found - save to server
 			// TODO: validate extension or type (if needed)
 			$sourceFile = $_FILES['fileImage']['tmp_name'];
-			$destinationFile = "portfolio/" . $_FILES['fileImage']['name'];
+			$destinationFile = "image/" . $_FILES['fileImage']['name']; //change the reference of folder to save
 
 			if (move_uploaded_file($sourceFile, $destinationFile)) {
 				// file has been moved
@@ -178,17 +192,28 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			$sqlBookAuth = "INSERT INTO book_author (bookId, authorId) VALUES (:pbookId, :pauthId );";
 			$dataBookAuth["pauthId"] = $lastid + 1;
 
+<<<<<<< HEAD
 			$queryBookAuth = $db->prepare($sqlBookAuth);
 			$queryBookAuth->execute($dataBookAuth);
 		}
+=======
+      $queryBookAuth = $db->prepare($sqlBookAuth);			
+      $queryBookAuth->execute($dataBookAuth); 
+
+
+    }
+>>>>>>> 72792248c7df0e1c1a929bef38895b1af0e12f85
 
 	}
 
+  header("location: stockAdmin.php");
+   
 }
 
 
 ?>
 
+<<<<<<< HEAD
 <head>
 	<style>
 		.admin a {
@@ -345,6 +370,64 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				<button name="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
 			</div>
 		</form>
+=======
+<div class="row">
+	<form class="col-sm-6 col-sm-offset-3" method="POST" enctype="multipart/form-data" action="editRecord.php">
+		
+	  <p><?=$errorMessages ?></p>
+		<div class="form-group">
+    <input type="hidden" name="qAuthorId" value=<?=$qAuthorId; ?> >
+    <input type="hidden" name="txtBookId" value=<?=$txtBookId; ?> >
+    <input type="hidden" name="oldImage" value="<?= $fileImage; ?>" ?>
+			<label for="txtBookId" class="control-label">Book Id : <?=$txtBookId ?? ""; ?> </label>
+			
+		</div>
+    <div class="form-group">
+			<label for="txtIsbn" class="control-label">ISBN </label>
+			<input id="txtIsbn" name="txtIsbn" type="text" required="required" class="form-control" value="<?=$txtIsbn; ?>">
+		</div>
+    <div class="form-group">
+			<label for="txtTitle" class="control-label">Title</label>
+			<input id="txtTitle" name="txtTitle" type="text" required="required" class="form-control" value="<?=$txtTitle; ?>">
+		</div>
+		
+		<div class="form-group">
+			<label for="fileImage" class="control-label">Image</label>
+			<input id="fileImage" name="fileImage" type="file" class="form-control" >
+		</div>
+		<div class="form-group">
+			<label for="txtDes" class="control-label">Description</label>
+			<input id="txtDes" name="txtDes" type="text"  class="form-control" value="<?=$txtDes; ?>">
+		</div>
+    
+		<div class="form-group">
+			<label for="selCategory" class="control-label">Category</label>
+			<select id="selCategory" name="selCategory" required="required" class="select form-control">
+				<option value="">-----</option>
+				<?php foreach($rowCat as $cat_Id => $cat_name){ 
+					$selected = ($cat_Id == $selCategory) ? "selected" : "";
+					?>
+					<option value="<?=$cat_Id; ?>" <?=$selected; ?> multiple><?=$cat_name; ?></option>
+				<?php } ?>
+			</select>
+		</div>
+    <div class="form-group">
+			<label for="txtAuthor" class="control-label">Author</label>
+			<input id="txtAuthor" name="txtAuthor" type="text" required="required" class="form-control" value="<?=$txtAuthor; ?>">
+		</div>
+    <div class="form-group">
+			<label for="txtStock" class="control-label">Stock Units</label>
+			<input id="txtStock" name="txtStock" type="text" required="required" class="form-control" value="<?=$txtStock; ?>">
+		</div>
+    <div class="form-group">
+			<label for="txtPrice" class="control-label">Unit Price ($)</label>
+			<input id="txtPrice" name="txtPrice" type="text" required="required" class="form-control" value="<?=$txtPrice; ?>">
+		</div>
+		<div class="form-group">
+			<button name="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
+		</div>
+	</form>
+>>>>>>> 72792248c7df0e1c1a929bef38895b1af0e12f85
 
 
 	</div>

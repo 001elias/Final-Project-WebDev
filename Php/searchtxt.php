@@ -96,6 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <div class="container">
 
+<<<<<<< HEAD
   <form class="search" action="searchtxt.php" method="post">
 
 
@@ -104,6 +105,149 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       <select id="searchTitle" name="searchTitle" required="required" class="select form-control">
         <option value="9">All</option>
         <option value="1">ISBN of Book</option>
+=======
+            
+                <div class="row">
+                <p><h1>List of Books</h1></p>
+                <p></p>
+                <table>
+                  <tr>
+                    <th>Book ID </th>
+                    <th>ISBN    </th>
+                    <th>Title</th>
+                    <th>Image   </th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Author</th>
+                    <th>Stock Unit</th>
+                    <th>Unit Price</th>
+                  </tr>
+                <?php $count = 0;
+                while($rowBook = $query->fetch()){ $link = "singleBook.php?item=" .
+                  $rowBook['bookId'];  
+                  
+                  
+                  if($searchTitle == 1 ){ 
+                    $lentext = strlen($txtSearch);
+                   
+                    if (substr($rowBook['isbn'], 0, $lentext) == $txtSearch){ $count++; ?>
+                      <div class="col-md-6 portfolio-item">
+                
+                        <tr style="text-align:center;">
+                          <td><?=$rowBook['bookId']; ?></td>
+                      
+                      
+                        
+
+                          <td><span class="small"><?=$rowBook['isbn']; ?></td>
+                          <td><a href="<?=$link; ?>"><?=$rowBook['title']; ?></td>
+                          <td><?php if ($rowBook['image'] != ""){ ?>
+                          <!-- check if image exists (else dummy photo ?) -->
+                          <a href="">
+                            <img class="img-responsive" src="<?=$rowBook['image']; ?>" width="80" 
+     height="100" alt />
+                          </a>
+                          <?php } else { echo "-"; } //end if ?></td>
+                          <td><?php if ($rowBook['description'] == "" ){
+                            echo "-"; } else{ echo $rowBook['description']; }
+                          ?></td>
+                          <td><?php $id=$rowBook['catId']; 
+                          echo $rowCat[$id];
+                          ?> </td>
+                          <td><?=$rowBook['authorName']; ?></td>
+                          <td><?=$rowBook['stockUnit']; ?></td>
+                          <td><?=$rowBook['unitPrice']; ?></td>
+                        
+                        </tr>
+                            
+                      </div>
+                    <?php 
+                     
+                    } 
+
+              
+                  } else if ($searchTitle == 2){ 
+                  
+                    $lentext = strlen($txtSearch);
+                    
+                    if (substr(strtoLower($rowBook['title']), 0, $lentext) == strtoLower($txtSearch)){  $count++; 
+                     ?>
+                      <div class="col-md-6 portfolio-item">
+                
+                        <tr style="text-align:center;">
+                          <td><?=$rowBook['bookId']; ?></td>
+                
+                          <td><span class="small"><?=$rowBook['isbn']; ?></td>
+                          <td><a href="<?=$link; ?>"><?=$rowBook['title']; ?></td>
+                          <td><?php if ($rowBook['image'] != ""){ ?>
+                          <!-- check if image exists (else dummy photo ?) -->
+                          <a href="">
+                            <img class="img-responsive" src="<?=$rowBook['image']; ?>" width="80" 
+     height="100" alt />
+                          </a>
+                          <?php } else { echo "-"; } //end if ?></td>
+                          <td><?php if ($rowBook['description'] == "" ){
+                            echo "-"; } else{ echo $rowBook['description']; }
+                          ?></td>
+                          <td><?php $id=$rowBook['catId']; 
+                          echo $rowCat[$id];
+                          ?> </td>
+                          <td><?=$rowBook['authorName']; ?></td>
+                          <td><?=$rowBook['stockUnit']; ?></td>
+                          <td><?=$rowBook['unitPrice']; ?></td>
+                        
+                        </tr>
+                   
+                      </div>  
+                    <?php 
+
+                         
+                    }  
+                      
+                     
+                        $noDataFound = "Book Title named not found";
+                     
+                  }else { ?>
+                    <div class="col-md-6 portfolio-item">
+                      <tr style="text-align:center;">
+                        <td><?=$rowBook['bookId']; ?></td>
+                        <td><span class="small"><?=$rowBook['isbn']; ?></td>
+                        <td><a href="<?=$link; ?>"><?=$rowBook['title']; ?></td>
+                        <td><?php if ($rowBook['image'] != ""){ ?>
+                        <!-- check if image exists (else dummy photo ?) -->
+                        <a href="">
+                          <img class="img-responsive" src="<?=$rowBook['image']; ?>" width="80" 
+     height="100" alt />
+                        </a>
+                        <?php } else { echo "-"; } //end if ?></td>
+                        <td><?php if ($rowBook['description'] == "" ){
+                          echo "-"; } else{ echo $rowBook['description']; }
+                        ?></td>
+                        <td><?php $id=$rowBook['catId']; 
+                        echo $rowCat[$id];
+                        ?> </td>
+                        <td><?=$rowBook['authorName']; ?></td>
+                        <td><?=$rowBook['stockUnit']; ?></td>
+                        <td><?=$rowBook['unitPrice']; ?></td>
+                        
+                      </tr>
+                    </div>
+                  <?php 
+                  } 
+                }  
+                  
+                 if ($count == 0 ){
+                  $noDataFound = "Book Items not found";
+                 } 
+                if ($noDataFound !="" && $_POST['txtSearch'] != null){  echo $noDataFound;}  
+                //end while 
+                
+                ?>
+                          
+              
+        </form>
+      </div>
+>>>>>>> 72792248c7df0e1c1a929bef38895b1af0e12f85
 
         <option value="2"> Title of Book</option>
         <option value="3"> A-Z (Ascending Order)</option>
