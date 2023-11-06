@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 include('session.php'); // Include the common header
 $loggedIn = isset($_SESSION['user']);
@@ -264,4 +263,5 @@ $loggedIn = isset($_SESSION['user']);
 </body>
 
 >>>>>>> bf238caf763260a51f9b6b315717770539c9a819
+
 </html>
