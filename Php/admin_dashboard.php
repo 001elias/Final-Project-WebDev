@@ -107,7 +107,7 @@ $loggedIn = isset($_SESSION['user']);
                     <div class="card-body">
                         <h5 class="card-title">Customer Records</h5>
                         <p class="card-text">Access customer records.</p>
-                        <a href="editCustomer.php" class="btn btn-primary">Go to Customer Records</a>
+                        <a href="customerList.php" class="btn btn-primary">Go to Customer Records</a>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@ $loggedIn = isset($_SESSION['user']);
                     <div class="card-body">
                         <h5 class="card-title">Book Records</h5>
                         <p class="card-text">Access book records.</p>
-                        <a href="editRecord.php" class="btn btn-primary">Go to Book Records</a>
+                        <a href="stockAdmin.php" class="btn btn-primary">Go to Book Records</a>
                     </div>
                 </div>
             </div>
