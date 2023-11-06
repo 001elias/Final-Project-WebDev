@@ -75,3 +75,11 @@ Date: November 3,2023
 Date: November 4,2023
 - worked on the page for the editing customer details for Admin. 
 - Worked on Admin role how admin can handle the database book and customer details 
+
+Date: November 5,2023
+- Finished admin dashboard
+- Finished Book page
+- Implemented contact us page
+- Finished the cart functionality
+- Finished search page
+- Finished categories page

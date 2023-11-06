@@ -9,6 +9,7 @@ if (isset($_SESSION["user"])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $customerId = $db->lastInsertId();
     $fullName = $_POST["fullname"];
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -63,12 +64,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="/Final-Project-WebDev/Css/style.css">
     <style>
         body {
@@ -146,33 +149,36 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
     </style>
 </head>
+
 <body>
-<header class="header">
-      <div class="logo">
-        <a href="#"><img src="/Final-Project-WebDev/Assets/logo1.png" alt="Bookish Logo"></a>
-      </div>
-      <div class="header-title">Bookish Bookstore</div>
-      <div class="navigation">
-        <input type="checkbox" class="toggle-menu" />
-        <div class="hamburger"></div>
-        <ul class="menu">
-          <li><a href="home.php">Home</a></li>
-          <li><a href="books.php">Books</a></li>
-          <li><a href="categories.php">Categories</a></li>
-          <li><a href="contactUs.php">Contact us</a></li>
-          <li><a href="aboutUs.php">About Us</a></li>
-          <?php if ($loggedIn != 1): ?>
-            <li><a href="login.php">Login</a></li>
-            <li><a href="registration.php">Register</a></li>
-          <?php endif; ?>
-            
-          <?php if ($loggedIn == 1): ?>
-            <li><a href="logout.php">Logout</a> </li>
-            <li><a href="cart.php"><img src="/Final-Project-WebDev/Assets/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a></li>
-          <?php endif; ?>
-          
-        </ul>
-      </div>
+    <header class="header">
+        <div class="logo">
+            <a href="#"><img src="/Final-Project-WebDev/Assets/logo1.png" alt="Bookish Logo"></a>
+        </div>
+        <div class="header-title">Bookish Bookstore</div>
+        <div class="navigation">
+            <input type="checkbox" class="toggle-menu" />
+            <div class="hamburger"></div>
+            <ul class="menu">
+                <li><a href="home.php">Home</a></li>
+                <li><a href="books.php">Books</a></li>
+                <li><a href="categories.php">Categories</a></li>
+                <li><a href="contactUs.php">Contact us</a></li>
+                <li><a href="aboutUs.php">About Us</a></li>
+                <li><a href="searchtxt.php">Search</a></li>
+                <?php if ($loggedIn != 1): ?>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="registration.php">Register</a></li>
+                <?php endif; ?>
+
+                <?php if ($loggedIn == 1): ?>
+                    <li><a href="logout.php">Logout</a> </li>
+                    <li><a href="cart.php"><img src="/Final-Project-WebDev/Assets/cart-icon.jpg"
+                                style="width:50px;height:60px;" alt="Cart"></a></li>
+                <?php endif; ?>
+
+            </ul>
+        </div>
     </header>
     <div class="container">
         <form action="registration.php" method="post">
@@ -193,7 +199,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             </div>
         </form>
         <div>
-      </div>
+        </div>
     </div>
 </body>
+
 </html>

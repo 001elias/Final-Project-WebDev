@@ -9299,8 +9299,6 @@ CREATE TABLE `book` (
 
 INSERT INTO `book` (`bookId`, `isbn`, `title`, `image`, `description`, `catId`, `stockUnit`, `unitPrice`) VALUES
 (1, '8987059752', 'The World\'s First Love: Mary  Mother of God', NULL, '', 12, 1, 3.35),
-(2, '20049130001', 'The Illuminati', NULL, '', 14, 23, 19.97),
-(3, '23755004321', 'The Servant Leader', NULL, '', 4, 42, 13.22),
 (4, '34406054602', 'What Life Was Like in the Jewel in the Crown: British India  AD 1600-1905', NULL, '', 13, 69, 13.02),
 (5, '49086007763', 'Cliffs Notes on Aristophanes\' Lysistrata  The Birds  The Clouds  The Frogs', NULL, '', 17, 46, 20.87),
 (6, '73999140774', 'Life Is a Dream and Other Spanish Classics (Eric Bentley\'s Dramatic Repertoire) - Volume II', NULL, '', 21, 27, 7.07),

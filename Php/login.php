@@ -1,6 +1,5 @@
 <?php
-session_start();
-
+include('session.php'); // Include the common header
 require 'connectDb.php'; // Include your database connection script
 
 if (isset($_SESSION['user'])) {
@@ -8,7 +7,8 @@ if (isset($_SESSION['user'])) {
     die();
 }
 
-function validateIsEmptyData($data, $field) {
+function validateIsEmptyData($data, $field)
+{
     if (empty($data[$field])) {
         return true; // Field is empty
     }
@@ -27,25 +27,37 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     if ($errorMessages == "") {
-        // Fetch data from the 'customer' table in the 'fsd10_yankee' database
-        $sql = "SELECT * FROM customer WHERE cusEmail = :email"; // Updated field name
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        // Attempt to fetch data from the 'customer' table
+        $sql = "SELECT * FROM customer WHERE cusEmail = :email";
         $query = $db->prepare($sql);
-        $query->execute(["email" => $_POST['email']]); // Updated field name
+        $query->execute(["email" => $email]);
         $data = $query->fetch();
 
-        if ($data) {
-            if (password_verify($_POST['password'], $data['cusPassword'])) { // Updated field name
-                // User login is successful
-                $_SESSION['user'] = true;
-                $_SESSION['realName'] = $data['cusFirstName'] . ' ' . $data['cusLastName'];
-
-                header("location: home.php");
-                die();
-            } else {
-                $errorMessages = "Invalid Password"; // Password doesn't match
-            }
+        if ($data && password_verify($password, $data['cusPassword'])) {
+            // User login is successful
+            $_SESSION['user'] = true;
+            $_SESSION['realName'] = $data['cusFirstName'] . ' ' . $data['cusLastName'];
+            $_SESSION['customerId'] = $data['customerId'];
+            header("location: home.php");
+            exit; // Important to stop further execution
         } else {
-            $errorMessages = "Invalid Email"; // Email not found
+            // If it's not a normal user, check if it's an admin
+            $sql = "SELECT * FROM tbladmin WHERE adminEmail = :email";
+            $query = $db->prepare($sql);
+            $query->execute(["email" => $email]);
+            $adminData = $query->fetch();
+
+            if ($adminData && password_verify($password, $adminData['adminPass'])) {
+                // Admin login is successful
+                $_SESSION['admin'] = true;
+                header("location: admin_dashboard.php"); // Redirect to admin dashboard
+                exit; // Important to stop further execution
+            } else {
+                $errorMessages = "Invalid Email or Password";
+            }
         }
     }
 }
@@ -53,28 +65,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 
     <!-- Include CSS styles and fonts from the home.html page -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-      crossorigin="anonymous"
-    />
-    <link
-      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="/Final-Project-WebDev/Css/style.css">
 
     <style>
@@ -155,36 +158,39 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     </style>
     <!-- End of styles and fonts -->
 </head>
+
 <body>
-<header class="header">
-      <div class="logo">
-        <a href="#"><img src="/Final-Project-WebDev/Assets/logo1.png" alt="Bookish Logo"></a>
-      </div>
-      <div class="header-title">Bookish Bookstore</div>
-      <div class="navigation">
-        <input type="checkbox" class="toggle-menu" />
-        <div class="hamburger"></div>
-        <ul class="menu">
-          <li><a href="home.php">Home</a></li>
-          <li><a href="books.php">Books</a></li>
-          <li><a href="categories.php">Categories</a></li>
-          <li><a href="contactUs.php">Contact us</a></li>
-          <li><a href="aboutUs.php">About Us</a></li>
-          <?php if ($loggedIn != 1): ?>
-            <li><a href="login.php">Login</a></li>
-            <li><a href="registration.php">Register</a></li>
-          <?php endif; ?>
-            
-          <?php if ($loggedIn == 1): ?>
-            <li><a href="logout.php">Logout</a> </li>
-            <li><a href="cart.php"><img src="/Final-Project-WebDev/Assets/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a></li>
-          <?php endif; ?>
-          
-        </ul>
-      </div>
+    <header class="header">
+        <div class="logo">
+            <a href="#"><img src="/Final-Project-WebDev/Assets/logo1.png" alt="Bookish Logo"></a>
+        </div>
+        <div class="header-title">Bookish Bookstore</div>
+        <div class="navigation">
+            <input type="checkbox" class="toggle-menu" />
+            <div class="hamburger"></div>
+            <ul class="menu">
+                <li><a href="home.php">Home</a></li>
+                <li><a href="books.php">Books</a></li>
+                <li><a href="categories.php">Categories</a></li>
+                <li><a href="contactUs.php">Contact us</a></li>
+                <li><a href="aboutUs.php">About Us</a></li>
+                <li><a href="searchtxt.php">Search</a></li>
+                <?php if ($loggedIn != 1): ?>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="registration.php">Register</a></li>
+                <?php endif; ?>
+
+                <?php if ($loggedIn == 1): ?>
+                    <li><a href="logout.php">Logout</a> </li>
+                    <li><a href="cart.php"><img src="/Final-Project-WebDev/Assets/cart-icon.jpg"
+                                style="width:50px;height:60px;" alt="Cart"></a></li>
+                <?php endif; ?>
+
+            </ul>
+        </div>
     </header>
     <div class="container">
-<form class="login-form" action="login.php" method="post">
+        <form class="login-form" action="login.php" method="post">
             <div class="form-group">
                 <input type="email" placeholder="Enter Email:" name="email" class="form-control">
             </div>
@@ -195,9 +201,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 <input type="submit" value="Login" name="login" class="btn btn-primary">
             </div>
         </form>
-        <?php if (!empty($errorMessages)) : ?>
-            <div class="alert alert-danger"><?php echo $errorMessages; ?></div>
+        <?php if (!empty($errorMessages)): ?>
+            <div class="alert alert-danger">
+                <?php echo $errorMessages; ?>
+            </div>
         <?php endif; ?>
     </div>
 </body>
+
 </html>
