@@ -21,9 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
   $searchTitle = $_POST['searchTitle'];
   $txtSearch = $_POST['txtSearch'];
 
-  if ($searchTitle == 3 ){
+  if ($searchTitle == 1 ){
+    $sql .= " where b.isbn like '%$txtSearch%'";
+  } else if ($searchTitle == 2){
+    $sql .= " where b.title like '%$txtSearch%'";
+  } else if ($searchTitle == 3){
     $sql .= " order by b.title asc";
-  } else if ($searchTitle == 4){
+  }else if ($searchTitle == 4){
     $sql .= " order by b.title desc";
   }else if ($searchTitle == 5){
     $sql .= " order by b.unitPrice asc";
@@ -34,8 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
   }else if ($searchTitle == 8){
     $sql .= " order by b.catId, b.unitPrice desc";
   }  else{
-    
+    //$sql .= " where b.title like '%$txtSearch%'";
   }
+  
   $query = $db->query($sql);
 }
 
@@ -96,88 +101,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                 <?php $count = 0;
                 while($rowBook = $query->fetch()){ $link = "singleBook.php?item=" .
                   $rowBook['bookId'];  
-                  
-                  
-                  if($searchTitle == 1 ){ 
-                    $lentext = strlen($txtSearch);
-                   
-                    if (substr($rowBook['isbn'], 0, $lentext) == $txtSearch){ $count++; ?>
-                      <div class="col-md-6 portfolio-item">
-                
-                        <tr style="text-align:center;">
-                          <td><?=$rowBook['bookId']; ?></td>
-                      
-                      
-                        
-
-                          <td><span class="small"><?=$rowBook['isbn']; ?></td>
-                          <td><a href="<?=$link; ?>"><?=$rowBook['title']; ?></td>
-                          <td><?php if ($rowBook['image'] != ""){ ?>
-                          <!-- check if image exists (else dummy photo ?) -->
-                          <a href="">
-                            <img class="img-responsive" src="<?=$rowBook['image']; ?>" width="80" 
-                              height="100" alt />
-                          </a>
-                          <?php } else { echo "-"; } //end if ?></td>
-                          <td><?php if ($rowBook['description'] == "" ){
-                            echo "-"; } else{ echo $rowBook['description']; }
-                          ?></td>
-                          <td><?php $id=$rowBook['catId']; 
-                          echo $rowCat[$id];
-                          ?> </td>
-                          <td><?=$rowBook['authorName']; ?></td>
-                          <td><?=$rowBook['stockUnit']; ?></td>
-                          <td><?=$rowBook['unitPrice']; ?></td>
-
-                        
-                        </tr>
-                            
-                      </div>
-                    <?php 
-                     
-                    } 
-
-              
-                  } else if ($searchTitle == 2){ 
-                  
-                    $lentext = strlen($txtSearch);
-                    
-                    if (substr(strtoLower($rowBook['title']), 0, $lentext) == strtoLower($txtSearch)){  $count++; 
-                     ?>
-                      <div class="col-md-6 portfolio-item">
-                
-                        <tr style="text-align:center;">
-                          <td><?=$rowBook['bookId']; ?></td>
-                
-                          <td><span class="small"><?=$rowBook['isbn']; ?></td>
-                          <td><a href="<?=$link; ?>"><?=$rowBook['title']; ?></td>
-                          <td><?php if ($rowBook['image'] != ""){ ?>
-                          <!-- check if image exists (else dummy photo ?) -->
-                          <a href="">
-                            <img class="img-responsive" src="<?=$rowBook['image']; ?>" width="80" 
-                               height="100" alt />
-                          </a>
-                          <?php } else { echo "-"; } //end if ?></td>
-                          <td><?php if ($rowBook['description'] == "" ){
-                            echo "-"; } else{ echo $rowBook['description']; }
-                          ?></td>
-                          <td><?php $id=$rowBook['catId']; 
-                          echo $rowCat[$id];
-                          ?> </td>
-                          <td><?=$rowBook['authorName']; ?></td>
-                          <td><?=$rowBook['stockUnit']; ?></td>
-                          <td><?=$rowBook['unitPrice']; ?></td>
-                        
-                        </tr>
-                   
-                      </div>  
-                    <?php 
-
-                         
-                    }
-                     
-                  }else { ?>
-                    <div class="col-md-6 portfolio-item">
+                  $count++; ?>
+                  <div class="col-md-6 portfolio-item">
                       <tr style="text-align:center;">
                         <td><?=$rowBook['bookId']; ?></td>
                         <td><span class="small"><?=$rowBook['isbn']; ?></td>
@@ -186,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                         <!-- check if image exists (else dummy photo ?) -->
                         <a href="">
                           <img class="img-responsive" src="<?=$rowBook['image']; ?>" width="80" 
-     height="100" alt />
+                            height="100" alt />
                         </a>
                         <?php } else { echo "-"; } //end if ?></td>
                         <td><?php if ($rowBook['description'] == "" ){
@@ -203,12 +128,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                     </div>
                   <?php 
                   } 
-                }  
+                  
                   
                  if ($count == 0 ){
                   $noDataFound = "Book Items not found";
                  } 
-                if ($noDataFound !="" && $_POST['txtSearch'] != null){  echo $noDataFound;}  
+                if ($noDataFound !="" ){  echo $noDataFound;}  
                 //end while 
                 
                 ?>
