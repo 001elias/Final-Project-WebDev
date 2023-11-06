@@ -108,7 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                           <td><?php if ($rowBook['image'] != ""){ ?>
                           <!-- check if image exists (else dummy photo ?) -->
                           <a href="">
-                            <img class="img-responsive" src="<?=$rowBook['image']; ?>" alt />
+                            <img class="img-responsive" src="<?=$rowBook['image']; ?>" width="80" 
+     height="100" alt />
                           </a>
                           <?php } else { echo "-"; } //end if ?></td>
                           <td><?php if ($rowBook['description'] == "" ){
@@ -147,7 +148,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                           <td><?php if ($rowBook['image'] != ""){ ?>
                           <!-- check if image exists (else dummy photo ?) -->
                           <a href="">
-                            <img class="img-responsive" src="<?=$rowBook['image']; ?>" alt />
+                            <img class="img-responsive" src="<?=$rowBook['image']; ?>" width="80" 
+     height="100" alt />
                           </a>
                           <?php } else { echo "-"; } //end if ?></td>
                           <td><?php if ($rowBook['description'] == "" ){
@@ -180,7 +182,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                         <td><?php if ($rowBook['image'] != ""){ ?>
                         <!-- check if image exists (else dummy photo ?) -->
                         <a href="">
-                          <img class="img-responsive" src="<?=$rowBook['image']; ?>" alt />
+                          <img class="img-responsive" src="<?=$rowBook['image']; ?>" width="80" 
+     height="100" alt />
                         </a>
                         <?php } else { echo "-"; } //end if ?></td>
                         <td><?php if ($rowBook['description'] == "" ){

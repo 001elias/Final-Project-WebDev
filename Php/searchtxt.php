@@ -70,11 +70,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                     <th>Stock Unit</th>
                     <th>Unit Price</th>
                   </tr>
-                <?php while($rowBook = $query->fetch()){ $link = "singleBook.php?item=" .
+                <?php $count = 0;
+                while($rowBook = $query->fetch()){ $link = "singleBook.php?item=" .
                   $rowBook['bookId'];  
-                 
+                  
+                  
                   if($searchTitle == 1 ){ 
-                    if ($rowBook['isbn'] == (int)$txtSearch){ ?>
+                    $lentext = strlen($txtSearch);
+                   
+                    if (substr($rowBook['isbn'], 0, $lentext) == $txtSearch){ $count++; ?>
                       <div class="col-md-6 portfolio-item">
                 
                         <tr style="text-align:center;">
@@ -88,7 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                           <td><?php if ($rowBook['image'] != ""){ ?>
                           <!-- check if image exists (else dummy photo ?) -->
                           <a href="">
-                            <img class="img-responsive" src="<?=$rowBook['image']; ?>" alt />
+                            <img class="img-responsive" src="<?=$rowBook['image']; ?>" width="80" 
+     height="100" alt />
                           </a>
                           <?php } else { echo "-"; } //end if ?></td>
                           <td><?php if ($rowBook['description'] == "" ){
@@ -102,20 +107,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                           <td><?=$rowBook['unitPrice']; ?></td>
                         
                         </tr>
-               
+                            
                       </div>
                     <?php 
-                    } else { 
-                      $noDataFound = "ISDN not found";
-                      
-                    }
+                     
+                    } 
 
               
                   } else if ($searchTitle == 2){ 
                   
                     $lentext = strlen($txtSearch);
-                   
-                    if (substr(strtoLower($rowBook['title']), 0, $lentext) == strtoLower($txtSearch)){ ?>
+                    
+                    if (substr(strtoLower($rowBook['title']), 0, $lentext) == strtoLower($txtSearch)){  $count++; 
+                     ?>
                       <div class="col-md-6 portfolio-item">
                 
                         <tr style="text-align:center;">
@@ -126,7 +130,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                           <td><?php if ($rowBook['image'] != ""){ ?>
                           <!-- check if image exists (else dummy photo ?) -->
                           <a href="">
-                            <img class="img-responsive" src="<?=$rowBook['image']; ?>" alt />
+                            <img class="img-responsive" src="<?=$rowBook['image']; ?>" width="80" 
+     height="100" alt />
                           </a>
                           <?php } else { echo "-"; } //end if ?></td>
                           <td><?php if ($rowBook['description'] == "" ){
@@ -143,12 +148,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                    
                       </div>  
                     <?php 
-                    } else { 
-                      $noDataFound = "Book Title named not found";
+
+                         
+                    }  
+                      
                      
-                    }
-
-
+                        $noDataFound = "Book Title named not found";
+                     
                   }else { ?>
                     <div class="col-md-6 portfolio-item">
                       <tr style="text-align:center;">
@@ -158,7 +164,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                         <td><?php if ($rowBook['image'] != ""){ ?>
                         <!-- check if image exists (else dummy photo ?) -->
                         <a href="">
-                          <img class="img-responsive" src="<?=$rowBook['image']; ?>" alt />
+                          <img class="img-responsive" src="<?=$rowBook['image']; ?>" width="80" 
+     height="100" alt />
                         </a>
                         <?php } else { echo "-"; } //end if ?></td>
                         <td><?php if ($rowBook['description'] == "" ){
@@ -177,7 +184,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                   } 
                 }  
                   
-                  
+                 if ($count == 0 ){
+                  $noDataFound = "Book Items not found";
+                 } 
                 if ($noDataFound !="" && $_POST['txtSearch'] != null){  echo $noDataFound;}  
                 //end while 
                 
