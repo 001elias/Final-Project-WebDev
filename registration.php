@@ -4,7 +4,7 @@ session_start();
 require 'connectDb.php'; // Include your database connection script
 
 if (isset($_SESSION["user"])) {
-    header("Location: home.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <title>Registration Form</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="/Final-Project-WebDev/Css/style.css">
+    <link rel="stylesheet" href="Css/style.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -153,14 +153,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <body>
     <header class="header">
         <div class="logo">
-            <a href="#"><img src="/Final-Project-WebDev/Assets/logo1.png" alt="Bookish Logo"></a>
+            <a href="#"><img src="Assets/logo1.png" alt="Bookish Logo"></a>
         </div>
         <div class="header-title">Bookish Bookstore</div>
         <div class="navigation">
             <input type="checkbox" class="toggle-menu" />
             <div class="hamburger"></div>
             <ul class="menu">
-                <li><a href="home.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="books.php">Books</a></li>
                 <li><a href="categories.php">Categories</a></li>
                 <li><a href="contactUs.php">Contact us</a></li>
@@ -173,8 +173,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 <?php if ($loggedIn == 1): ?>
                     <li><a href="logout.php">Logout</a> </li>
-                    <li><a href="cart.php"><img src="/Final-Project-WebDev/Assets/cart-icon.jpg"
-                                style="width:50px;height:60px;" alt="Cart"></a></li>
+                    <li><a href="cart.php"><img src="Assets/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a>
+                    </li>
                 <?php endif; ?>
 
             </ul>

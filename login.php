@@ -3,7 +3,7 @@ include('session.php'); // Include the common header
 require 'connectDb.php'; // Include your database connection script
 
 if (isset($_SESSION['user'])) {
-    header("location: home.php");
+    header("location: index.php");
     die();
 }
 
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $_SESSION['user'] = true;
             $_SESSION['realName'] = $data['cusFirstName'] . ' ' . $data['cusLastName'];
             $_SESSION['customerId'] = $data['customerId'];
-            header("location: home.php");
+            header("location: index.php");
             exit; // Important to stop further execution
         } else {
             // If it's not a normal user, check if it's an admin
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/Final-Project-WebDev/Css/style.css">
+    <link rel="stylesheet" href="Css/style.css">
 
     <style>
         body {
@@ -162,14 +162,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <body>
     <header class="header">
         <div class="logo">
-            <a href="#"><img src="/Final-Project-WebDev/Assets/logo1.png" alt="Bookish Logo"></a>
+            <a href="#"><img src="Assets/logo1.png" alt="Bookish Logo"></a>
         </div>
         <div class="header-title">Bookish Bookstore</div>
         <div class="navigation">
             <input type="checkbox" class="toggle-menu" />
             <div class="hamburger"></div>
             <ul class="menu">
-                <li><a href="home.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="books.php">Books</a></li>
                 <li><a href="categories.php">Categories</a></li>
                 <li><a href="contactUs.php">Contact us</a></li>
@@ -182,8 +182,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 <?php if ($loggedIn == 1): ?>
                     <li><a href="logout.php">Logout</a> </li>
-                    <li><a href="cart.php"><img src="/Final-Project-WebDev/Assets/cart-icon.jpg"
-                                style="width:50px;height:60px;" alt="Cart"></a></li>
+                    <li><a href="cart.php"><img src="Assets/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a>
+                    </li>
                 <?php endif; ?>
 
             </ul>

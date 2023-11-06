@@ -52,8 +52,8 @@ if ($loggedIn == 1) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Final-Project-WebDev/Css/style.css">
-    <link rel="stylesheet" href="/Final-Project-WebDev/Css/aboutUs.css">
+    <link rel="stylesheet" href="Css/style.css">
+    <link rel="stylesheet" href="Css/aboutUs.css">
 
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" />
@@ -239,14 +239,14 @@ if ($loggedIn == 1) {
 <body>
     <header class="header">
         <div class="logo">
-            <a href="#"><img src="/Final-Project-WebDev/Assets/logo1.png" alt="Bookish Logo"></a>
+            <a href="#"><img src="Assets/logo1.png" alt="Bookish Logo"></a>
         </div>
         <div class="header-title">Bookish Bookstore</div>
         <div class="navigation">
             <input type="checkbox" class="toggle-menu" />
             <div class="hamburger"></div>
             <ul class="menu">
-                <li><a href="home.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="books.php">Books</a></li>
                 <li><a href="categories.php">Categories</a></li>
                 <li><a href="contactUs.php">Contact us</a></li>
@@ -259,8 +259,8 @@ if ($loggedIn == 1) {
 
                 <?php if ($loggedIn == 1): ?>
                     <li><a href="logout.php">Logout</a> </li>
-                    <li><a href="cart.php"><img src="/Final-Project-WebDev/Assets/cart-icon.jpg"
-                                style="width:50px;height:60px;" alt="Cart"></a></li>
+                    <li><a href="cart.php"><img src="Assets/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a>
+                    </li>
                 <?php endif; ?>
 
             </ul>

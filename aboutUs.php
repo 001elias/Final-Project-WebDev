@@ -13,8 +13,8 @@ $loggedIn = isset($_SESSION['user']);
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/Final-Project-WebDev/Css/style.css">
-  <link rel="stylesheet" href="/Final-Project-WebDev/Css/aboutUs.css">
+  <link rel="stylesheet" href="Css/style.css">
+  <link rel="stylesheet" href="Css/aboutUs.css">
 
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" />
@@ -32,14 +32,14 @@ $loggedIn = isset($_SESSION['user']);
 <body>
   <header class="header">
     <div class="logo">
-      <a href="#"><img src="/Final-Project-WebDev/Assets/logo1.png" alt="Bookish Logo"></a>
+      <a href="#"><img src="Assets/logo1.png" alt="Bookish Logo"></a>
     </div>
     <div class="header-title">Bookish Bookstore</div>
     <div class="navigation">
       <input type="checkbox" class="toggle-menu" />
       <div class="hamburger"></div>
       <ul class="menu">
-        <li><a href="home.php">Home</a></li>
+        <li><a href="index.php">Home</a></li>
         <li><a href="books.php">Books</a></li>
         <li><a href="categories.php">Categories</a></li>
         <li><a href="contactUs.php">Contact us</a></li>
@@ -52,8 +52,7 @@ $loggedIn = isset($_SESSION['user']);
 
         <?php if ($loggedIn == 1): ?>
           <li><a href="logout.php">Logout</a> </li>
-          <li><a href="cart.php"><img src="/Final-Project-WebDev/Assets/cart-icon.jpg" style="width:50px;height:60px;"
-                alt="Cart"></a></li>
+          <li><a href="cart.php"><img src="Assets/cart-icon.jpg" style="width:50px;height:60px;" alt="Cart"></a></li>
         <?php endif; ?>
 
       </ul>
@@ -73,19 +72,19 @@ $loggedIn = isset($_SESSION['user']);
 
       <div class="team">
         <div class="team-member">
-          <img src="/Final-Project-WebDev/Assets/Ayman1.jpg" alt="Ayman Zriek">
+          <img src="Assets/Ayman1.jpg" alt="Ayman Zriek">
           <h4>Ayman Zriek</h4>
           <p>John Doe is an experienced entrepreneur with a passion for innovation. He has successfully launched several
             startups and is committed to driving the company towards success.</p>
         </div>
         <div class="team-member">
-          <img src="/Final-Project-WebDev/Assets/Elias1.png" alt="Elias Barrellet">
+          <img src="Assets/Elias1.png" alt="Elias Barrellet">
           <h4>Elias Barrellet</h4>
           <p>Jane Smith is a finance expert with a strong background in financial management. Her strategic insights and
             expertise have played a crucial role in the company's growth and profitability.</p>
         </div>
         <div class="team-member">
-          <img src="/Final-Project-WebDev/Assets/Ashok1.png" alt="Ashok Chand">
+          <img src="Assets/Ashok1.png" alt="Ashok Chand">
           <h4>Ashok Chand</h4>
           <p>Jane Smith is a finance expert with a strong background in financial management. Her strategic insights and
             expertise have played a crucial role in the company's growth and profitability.</p>
