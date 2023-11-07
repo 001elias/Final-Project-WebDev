@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 		$txtPrice = $_POST['txtPrice'];
 	$txtDes = $_POST['txtDes'] ?? "";
 	$fileImage = $_POST['oldImage'] ?? ""; // tracking existing image during update
-	$txtBookId = $_POST['txtBookId'] ?? ""; // track item id if it exists
+	$txtBookId = $_POST['txtbookId'] ?? ""; // track item id if it exists
 	$qAuthorId = $_POST['qAuthorId'] ?? "";
 
 	// if error message is empty then save to db
@@ -279,7 +279,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				<input type="hidden" name="txtBookId" value=<?= $txtBookId; ?>>
 				<input type="hidden" name="oldImage" value="<?= $fileImage; ?>" ?>
 				<label for="txtBookId" class="control-label">Book Id :
-					<?= $txtBookId ?? ""; ?>
+					<?= $txtBookId; ?>
 				</label>
 
 			</div>

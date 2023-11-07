@@ -13,11 +13,11 @@ if (!$loggedIn) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bookId = $_POST['bookId']; // The book ID from the form.
-    $customerId = $_SESSION['user'];
+    $customerId = $_SESSION['customerId'];
     $quantity = $_POST['quantity']; // The quantity from the form.
-    
+
     // You can add validation for the book ID and quantity here if needed.
-    
+
     // Check if the book is already in the cart for this user.
     $stmt = $db->prepare("SELECT * FROM cart WHERE customerId = ? AND bookId = ?");
     $stmt->execute([$customerId, $bookId]);
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $db->prepare("INSERT INTO cart (customerId, bookId, quantity) VALUES (?, ?, ?)");
         $stmt->execute([$customerId, $bookId, $quantity]);
     }
-    
+
 
     // Redirect back to the books page or wherever you want to go.
     header("Location: books.php");
